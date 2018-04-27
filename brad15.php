@@ -11,12 +11,22 @@
     $a2[4] = 'Brad';
     var_dump($a2);
 
+    foreach ($a2 as $key => $value){
+        echo "{$key} : {$value}<br>";
+    }
+
+
     echo '<hr>';
     $a3['name'] = 'Brad';
     $a3['weight'] = 80;
     $a3['gender'] = true;
     $a3['age'] = 53;
     $a3[123] = 456;
+
+    foreach ($a3 as $key => $value){
+        echo "{$key} : {$value}<br>";
+    }
+
     var_dump($a3);
 
     echo '<hr>';
