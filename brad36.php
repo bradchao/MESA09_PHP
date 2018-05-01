@@ -1,7 +1,7 @@
 <?php
     date_default_timezone_set("Asia/Taipei");
 
-    $fp = @opendir("test1");
+    $fp = @opendir("test1") or die("Server Busy");
     while ($file = readdir($fp)){
         if (is_dir("test1/{$file}")){
             echo '[dir]';

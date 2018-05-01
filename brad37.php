@@ -1,9 +1,8 @@
 <?php
-    $fp = fopen("test1/brad2.txt",'r');
+    $fp = fopen("test1/brad2.txt",'a+');
 
-
-    while ($c = fgetss($fp)){
-       echo $c . '<br>';
-    }
+    fwrite($fp, "Hello, Brad");
+//    $cont = fread($fp, 4096);
+//    echo $cont;
 
     fclose($fp);
