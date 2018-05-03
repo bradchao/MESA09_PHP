@@ -7,7 +7,7 @@
  */
 
 class Bike {
-    private $speed;         // 物件等級的屬性
+    public $speed;         // 物件等級的屬性
     const var1 = 123;
 
     static $counter = 0;    // 類別等級的屬性
@@ -16,6 +16,7 @@ class Bike {
     public function __construct($initSpeed = 0) {
         $this->speed = $initSpeed;
         self::$counter++;
+        echo 'Parent:__construct<br>';
     }
 
     public function upSpeed(){
@@ -28,6 +29,22 @@ class Bike {
 
     public function getSpeed(){
         return $this->speed;
+    }
+}
+
+class Scooter extends Bike {
+    public $gear = 1;
+
+    function __construct(int $initSpeed = 0){
+        parent::__construct($initSpeed);
+        echo 'self:__construct<br>';
+    }
+
+    // Override
+    function upSpeed($gear = 1) {
+        parent::upSpeed();
+        $this->gear = $gear;
+        $this->speed *= 1.7*$this->gear;
     }
 }
 
@@ -47,7 +64,12 @@ class TWId {
 
     public function __construct($id='', $gender=true, $area=-1){
         if (strlen($id) != 0){
-            $this->id = $id;
+            if (self::checkTWId($id)){
+                $this->id = $id;
+            }else{
+                throw new Exception('error id');
+            }
+
         }else {
             $area = $area==-1?rand(0,25):$area;
             $this->createNewId($gender, $area);
@@ -107,9 +129,33 @@ class TWId {
     public function getId(){
         return $this->id;
     }
-
-
 }
+
+// getter & setter
+class Member {
+    private $id, $name, $age, $gender;
+
+    function __construct($id){
+        $this->id = $id;
+    }
+
+    function __get($fname){     // if $fname = 'id'
+        if ($fname == 'name'){
+            $ret = 'III:' . $this->$fname;
+        }else{
+            $ret = $this->$fname;
+        }
+        return $ret;
+    }
+    function __set($fname, $value){
+        if ($fname != 'id'){
+            $this->$fname = $value;
+        }
+    }
+}
+
+
+
 
 
 

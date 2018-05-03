@@ -9,3 +9,16 @@
     }else{
         echo 'XX';
     }
+
+    echo '<hr>';
+
+    try{
+        $urID = new TWId('A123456787');
+        echo $urID->getId() . '<br>';
+    }catch (Exception $e){
+        $urID = null;
+        echo $e->getMessage();
+    }
+    echo '<hr>';
+
+
