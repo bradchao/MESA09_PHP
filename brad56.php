@@ -22,3 +22,4 @@ try{
     echo $e->getMessage();
     $bird->setLeg(2);
 }
+echo 'OK';
