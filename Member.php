@@ -7,6 +7,7 @@
  */
 
 class Member {
+//    private $cart;
 //    private $id, $name, $account, $PassWD;
 //
 //    function __get($name){      // 'name'
@@ -14,6 +15,10 @@ class Member {
 //    }
 //    function __set($name, $value){
 //        $this->$name = $value;
+//    }
+
+//    function setCart($cart){
+//        $this->cart = $cart;
 //    }
 
 }

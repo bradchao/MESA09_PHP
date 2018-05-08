@@ -1,4 +1,5 @@
 <?php
+    include_once 'myconfig.php';
     include_once 'sql.php';
     include_once 'Product.php';
 
@@ -9,8 +10,29 @@
         $mysqli->query($sql);
     }
 
+//    $sql = 'select count(*) as `sum` from product';
+//    $result = $mysqli->query($sql);
+//    $data = $result->fetch_assoc();
+//    $sum = $data['sum'];
+//    echo $sum . '<br>';
 
-    $sql = 'select * from product';
+    $sql = 'select id from product';
+    $result = $mysqli->query($sql);
+    $sum = $result->num_rows;
+//    echo $sum . '<br>';
+
+
+    $page = 1;
+    if (isset($_REQUEST['page'])){
+        $page = $_REQUEST['page'];
+    }
+
+    $totalPage = ceil($sum / RPP);
+    $prev = $page==1?1:$page-1;
+    $next = $page==$totalPage?$page:$page+1;
+
+    $start = ($page-1)*RPP;
+    $sql = "select * from product order by id limit {$start}," . RPP;
     $result = $mysqli->query($sql);
 
 ?>
@@ -46,3 +68,7 @@ Product List:<br>
 
     ?>
 </table>
+<hr>
+<a href="?page=<?php echo $prev; ?>">Prev</a>
+<?php echo $page; ?>
+<a href="?page=<?php echo $next; ?>">Next</a>
