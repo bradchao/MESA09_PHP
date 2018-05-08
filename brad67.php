@@ -3,9 +3,14 @@
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status == 200){
-            document.getElementById('here').innerHTML =
-                xhttp.responseText;
-
+            var ret = xhttp.responseText;
+            if (ret.substr(0,3) == 'num'){
+                document.getElementById('num').innerHTML =
+                    ret.substr(4);
+            }else{
+                document.getElementById('here').innerHTML =
+                    xhttp.responseText;
+            }
         }
     }
     
@@ -26,6 +31,12 @@
         setInterval(test1, 3*1000);
     }
 
+    setInterval(function () {
+        xhttp.open('GET', 'brad70.php', true);
+        xhttp.send();
+    }, 1000);
+
+
 </script>
 <input type="number" id="max" />
 <input type="button" onclick="test1()" value="test1" /><br>
@@ -33,3 +44,5 @@
 <input type="button" onclick="test3()" value="test3" /><br>
 <hr>
 <div id="here"></div>
+<hr />
+<div id="num"></div>
