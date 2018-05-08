@@ -1,4 +1,5 @@
 Main Page
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <?php
     include_once 'sql.php';
     include_once 'Member.php';
@@ -22,14 +23,22 @@ Product List:<br>
         <th>Num.</th>
         <th>Update Cart</th>
     </tr>
+    <script>
+        function addCart(pid) {
+            var num = $("#num_" + pid).val();
+            alert(pid + ":" + num);
+        }
+    </script>
     <?php
     while ($product = $result->fetch_object("Product")){
         echo '<tr>';
         echo "<td>{$product->pname}</td>";
         echo "<td>{$product->price}</td>";
 
-        echo '<td><input type="number"></td>';
-        echo '<td><input type="button" value="update"></td>';
+        echo "<td><input type='number' id='num_{$product->id}'></td>";
+        echo "<td><input type='button' 
+            onclick='addCart({$product->id})''
+            value='update'></td>";
 
         echo '</tr>';
     }
