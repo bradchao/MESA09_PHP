@@ -9,6 +9,7 @@ Main Page
 
     if (!isset($_SESSION['member'])) header('Location: login.php');
 
+    $cart = $_SESSION['cart'];
     $sql = "select * from product";
     $result = $mysqli->query($sql);
 
@@ -26,7 +27,11 @@ Product List:<br>
     <script>
         function addCart(pid) {
             var num = $("#num_" + pid).val();
-            alert(pid + ":" + num);
+            $.get("addCart.php?pid="+pid+"&num="+num, function (data, status) {
+                if (status == 'success'){
+                    alert(data);
+                }
+            })
         }
     </script>
     <?php
@@ -35,7 +40,8 @@ Product List:<br>
         echo "<td>{$product->pname}</td>";
         echo "<td>{$product->price}</td>";
 
-        echo "<td><input type='number' id='num_{$product->id}'></td>";
+        $num = $cart->getItemNum($product->id);
+        echo "<td><input type='number' id='num_{$product->id}' value='{$num}'></td>";
         echo "<td><input type='button' 
             onclick='addCart({$product->id})''
             value='update'></td>";
@@ -45,8 +51,8 @@ Product List:<br>
     ?>
 
 </table>
-
-
+<hr>
+<a href="checkout.php">Checkout</a>
 <hr>
 <a href="logout.php">Logout</a>
 
