@@ -33,3 +33,4 @@ $i = 1;
         }
     ?>
 </table>
+<a href="close.php">Close</a>
