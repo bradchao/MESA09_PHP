@@ -8,8 +8,14 @@
     $passwd = $_REQUEST['passwd'];
 
     $sql = "select * from member " .
-        "where account='{$account}'";
-    $result = $mysqli->query($sql);
+        "where account=?";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $account);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0){
         $member = $result->fetch_object("Member");
 
