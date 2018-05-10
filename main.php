@@ -9,6 +9,7 @@ Main Page
 
     if (!isset($_SESSION['member'])) header('Location: login.php');
 
+    $member = $_SESSION['member'];
     $cart = $_SESSION['cart'];
     $sql = "select * from product";
     $result = $mysqli->query($sql);
@@ -16,6 +17,12 @@ Main Page
 
     ?>
 <hr>
+Hello, <a href="editProfile.php"><?php echo $member->name; ?></a>
+<?php
+    $icon = base64_encode($member->icon);
+?>
+<img src="data:image/jpeg;base64,<?php echo $icon; ?>"/>
+<br>
 Product List:<br>
 <table border="1" width="100%">
     <tr>
