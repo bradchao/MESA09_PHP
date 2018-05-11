@@ -57,7 +57,7 @@ Product List:<br>
     while ( $product = $result->fetch_object('Product')){
          echo '<tr>';
          echo "<td>{$product->id}</td>";
-         echo "<td>{$product->pname}</td>";
+         echo "<td><a href='showImage.php?pid={$product->id}'>{$product->pname}</a></td>";
          echo "<td>{$product->price}</td>";
          echo "<td>{$product->qty}</td>";
          echo "<td><a href='?delid={$product->id}' " .
