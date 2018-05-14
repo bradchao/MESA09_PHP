@@ -6,6 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -80,7 +82,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<code>application/controllers/Welcome.php</code>
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
+
+        <button type="button">OK</button>
+        <div class="alert alert-primary" role="alert">
+            Hello, World.
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle"
+                type="button"
+            >
+                Button
+            </button>
+            <div class="dropdown-menu">
+                <div class="dropdown-item">Item1</div>
+                <div class="dropdown-item">Item2</div>
+                <div class="dropdown-item">Item3</div>
+                <div class="dropdown-item">Item4</div>
+            </div>
+        </div>
+
+    </div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
